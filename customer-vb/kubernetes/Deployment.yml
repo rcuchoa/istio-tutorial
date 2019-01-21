@@ -4,7 +4,7 @@ metadata:
   labels:
     app: customer
     version: vb
-  name: customer
+  name: customer-vb
 spec:
   replicas: 1
   selector:
@@ -21,7 +21,7 @@ spec:
       - env:
         - name: JAVA_OPTIONS
           value: -Xms128m -Xmx256m -Djava.net.preferIPv4Stack=true -Djava.security.egd=file:///dev/./urandom
-        image: example/customer:latest
+        image: example/customer:vb
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:

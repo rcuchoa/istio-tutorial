@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: recommendation
+spec:
+  hosts:
+  - recommendation
+  http:
+#  - fault:
+#      abort:
+#        percent: 10
+#        httpStatus: 400
+#  - fault:
+#      delay:
+#        percent: 100
+#        fixedDelay: 5s
+  - route:
+    - destination:
+        host: recommendation
+        subset: v1
+      weight: 45
+    - destination:
+        host: recommendation
+        subset: v2
+      weight: 45
+    - destination:
+        host: recommendation
+        subset: v3
+      weight: 10
+    timeout: 10s
+    retries:
+      attempts: 3
+      perTryTimeout: 2s

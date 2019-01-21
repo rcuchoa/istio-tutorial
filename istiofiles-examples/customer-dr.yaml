@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: customer
+spec:
+  host: customer
+  trafficPolicy:
+    loadBalancer:
+      simple: RANDOM
+  subsets:
+  - name: va
+    labels:
+      version: va
+  - name: vb
+    labels:
+      version: vb
